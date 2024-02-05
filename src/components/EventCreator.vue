@@ -1,27 +1,34 @@
 <script>
 import { ref } from 'vue'
 
-export default {
-  name: 'EventCreator'
-}
-
 const date = ref('date')
 const title = ref('title')
 const color = ref('color')
 const tags = ref('tags')
 
 
-function submitForm() {
-    console.log(date.value)
-    console.log(title.value)
-    console.log(color.value)
-    console.log(tags.value)
+export default {
+  name: 'EventCreator',
+  methods: {
+              submitForm() {
+              const requestOptions = {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({date: "2004-10-21", eventInstanceId: "eventFromForm"})
+                            };
+                  fetch('http://localhost:8081/event', requestOptions)
+                      .then(response => response.json())
+                  console.log(date.value)
+                  console.log(title.value)
+                  console.log(color.value)
+                  console.log(tags.value)
+              }
+          }
 }
-
 </script>
 
 <template>
-      <form @submit.prevent='submitForm()'>
+      <form>
       <label for="date">date:</label>
       <input type="date" v-model="date" id="date" name="date" value="2000-01-01" />
         <br />
@@ -34,6 +41,6 @@ function submitForm() {
       <label for="tags">tags:</label>
       <input id="tags" name="tags" v-model="tags" />
         <br />
-      <button>Submit</button>
-      </for m>
+      <button type="submit" @click.prevent="submitForm">Submit</button>
+      </form>
 </template>
