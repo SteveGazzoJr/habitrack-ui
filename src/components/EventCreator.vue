@@ -1,30 +1,33 @@
 <script>
-import { ref } from 'vue'
-
-const date = ref('date')
-const title = ref('title')
-const color = ref('color')
-const tags = ref('tags')
-
+import axios from "axios"
 
 export default {
   name: 'EventCreator',
-  methods: {
-              submitForm() {
-              const requestOptions = {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({date: "2004-10-21", eventInstanceId: "eventFromForm"})
-                            };
-                  fetch('http://localhost:8081/event', requestOptions)
-                      .then(response => response.json())
-                  console.log(date.value)
-                  console.log(title.value)
-                  console.log(color.value)
-                  console.log(tags.value)
-              }
-          }
-}
+    data() {
+      return {
+        eventId: {}
+      };
+    },
+    methods: {
+      async createEvent(title, color, tags) {
+            try {
+              const { data } = await axios.post(
+                "http://localhost:8081/event/model",
+                {
+                  title: title,
+                  colorValue: color,
+                  tags: tags.split(','),
+                  userId: 1
+                }
+              );
+              this.eventId = data;
+            } catch (error) {
+              console.log(error);
+            }
+          },
+        },
+  }
+
 </script>
 
 <template>
@@ -41,6 +44,9 @@ export default {
       <label for="tags">tags:</label>
       <input id="tags" name="tags" v-model="tags" />
         <br />
-      <button type="submit" @click.prevent="submitForm">Submit</button>
+      <button type="submit" @click.prevent="createEvent(title, color, tags)">Submit</button>
       </form>
+        <div v-if="eventId">
+           <h5>{{eventId}}</h5>
+        </div>
 </template>
