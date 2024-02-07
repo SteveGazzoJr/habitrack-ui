@@ -1,7 +1,6 @@
 <template>
 <div>
-  <label for="eventId">Event ID:</label>
-  <input id="eventId" name="eventId" v-model="eventId"/>
+  <input class="text" id="eventId" name="eventId" v-model="eventId" placeholder = "Event ID"/>
 <br />
   <button @click.prevent="getEvent(eventId)">Submit</button>
   <br />

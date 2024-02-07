@@ -28,4 +28,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.text {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 1rem
+}
 </style>
