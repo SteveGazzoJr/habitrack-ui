@@ -33,6 +33,7 @@ export default {
 </script>
 
 <template>
+<h2>Event Creator</h2>
       <form>
       <label for="date">Date</label>
       <br />

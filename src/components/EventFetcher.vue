@@ -1,4 +1,5 @@
 <template>
+<h2>Event Fetcher</h2>
 <div>
   <input class="text" id="eventId" name="eventId" v-model="eventId" placeholder = "Event ID"/>
 <br />

@@ -1,20 +1,26 @@
 <template>
-  <h1>Save Event</h1>
-  <EventCreator />
-  <br />
-  <h1>Fetch Event</h1>
-  <EventFetcher />
+<div class="routerLink">
+<a href @click="goToEventCreator()">Event Creator</a>
+<br><br>
+<a href @click="goToEventFetcher()">Event Fetcher</a>
+</div>
+<router-view />
 </template>
 
 <script>
-import EventCreator from './components/EventCreator.vue'
-import EventFetcher from './components/EventFetcher.vue'
 
 export default {
   name: 'App',
   components: {
-    EventCreator,
-    EventFetcher
+
+  },
+   methods:{
+   goToEventCreator(){
+        this.$router.push('/eventcreator');
+    },
+  goToEventFetcher(){
+        this.$router.push('/eventfetcher');
+    }
   }
 }
 </script>
@@ -26,7 +32,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 
 .text {
@@ -35,5 +41,14 @@ export default {
   margin: 8px 0;
   box-sizing: border-box;
   font-size: 1rem
+}
+
+.routerLink {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: -80%;
+  padding: 40px;
+  font-size: 25px;
 }
 </style>
