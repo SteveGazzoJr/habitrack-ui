@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^1.6.7",
     "core-js": "^3.8.3",
+    "tinycolor2": "^1.6.0",
     "vue": "^3.2.13",
     "vue-color-kit": "^1.0.6",
+    "vue-router": "^4.2.5",
     "vue3-colorpicker": "^2.2.3"
   },
   "devDependencies": {

@@ -1,8 +1,16 @@
 <script>
 import axios from "axios"
+  import { ref } from "vue";
+  import { ColorInputWithoutInstance } from "tinycolor2";
 
 export default {
     name: 'EventCreator',
+    setup() {
+           const pureColor = ref<ColorInputWithoutInstance>("red");
+           const gradientColor = ref("linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)");
+
+           return { pureColor, gradientColor }
+         },
     data() {
       return {
         eventId: {},
@@ -43,19 +51,19 @@ export default {
       <br />
       <input class="text" id="title" name="title" v-model="title" />
       <br />
-      <label for="color">Color</label>
+      <label class="text" for="color">Color</label>
       <br />
-      <input class="text" id="color" name="color" v-model="color" />
+      <color-picker v-model:pureColor="pureColor" v-model:gradientColor="gradientColor"/>
       <br />
       <label for="tags">Tags (comma-separated)</label>
       <br />
       <input class="text" id="tags" name="tags" v-model="tags" />
       <br />
-      <button type="submit" @click.prevent="createEvent(title, color, tags)">Submit</button>
+      <button type="submit" @click.prevent="createEvent(title, pureColor, tags)">Submit</button>
       </form>
-        <div v-if="eventFetched">
-           <h5>{{eventId}}</h5>
-        </div>
+      <div v-if="eventFetched">
+         <h5>{{eventId}}</h5>
+      </div>
 </template>
 <style>
 .date {
