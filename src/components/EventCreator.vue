@@ -5,16 +5,12 @@ import axios from "axios"
 
 export default {
     name: 'EventCreator',
-    setup() {
-           const pureColor = ref<ColorInputWithoutInstance>("red");
-           const gradientColor = ref("linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)");
-
-           return { pureColor, gradientColor }
-         },
     data() {
       return {
         eventId: {},
-        eventFetched: false
+        eventFetched: false,
+        pureColor : ref<ColorInputWithoutInstance>("red"),
+        gradientColor : ref("linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)")
       };
     },
     methods: {
