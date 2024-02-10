@@ -1,13 +1,23 @@
 <template>
-<h2>Event Fetcher</h2>
-<div>
-  <input class="text" id="eventId" name="eventId" v-model="eventId" placeholder = "Event ID"/>
-<br />
-  <button @click.prevent="getEvent(eventId)">Submit</button>
-  <br />
-</div>
-  <div v-if="event">
-     <h5>{{event.title}}</h5>
+  <div class="wrapper">
+    <h2>Event Fetcher</h2>
+    <div>
+      <input
+        class="text"
+        id="event-id"
+        name="eventId"
+        v-model="eventId"
+        placeholder="Event ID"
+      />
+      <br />
+      <button class="submit-button" @click.prevent="getEvent(eventId)">
+        Submit
+      </button>
+      <br />
+    </div>
+    <div v-if="event">
+      <h5>{{ event.title }}</h5>
+    </div>
   </div>
 </template>
 
@@ -23,7 +33,9 @@ export default {
   },
   methods: {
     async getEvent(eventId) {
-      const { data } = await axios.get("http://localhost:8081/event/model/" + eventId);
+      const { data } = await axios.get(
+        "http://localhost:8081/event/model/" + eventId
+      );
       this.event = data;
     },
   },

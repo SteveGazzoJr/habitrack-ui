@@ -1,28 +1,25 @@
 <template>
-<div class="routerLink">
-<a href @click="goToEventCreator()">Event Creator</a>
-<br><br>
-<a href @click="goToEventFetcher()">Event Fetcher</a>
-</div>
-<router-view />
+  <div class="routerLink">
+    <a href @click="goToEventCreator()">Event Creator</a>
+    <br /><br />
+    <a href @click="goToEventFetcher()">Event Fetcher</a>
+  </div>
+  <router-view />
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  components: {
-
-  },
-   methods:{
-   goToEventCreator(){
-        this.$router.push('/eventcreator');
+  name: "App",
+  components: {},
+  methods: {
+    goToEventCreator() {
+      this.$router.push("/eventcreator");
     },
-  goToEventFetcher(){
-        this.$router.push('/eventfetcher');
-    }
-  }
-}
+    goToEventFetcher() {
+      this.$router.push("/eventfetcher");
+    },
+  },
+};
 </script>
 
 <style>
@@ -36,11 +33,12 @@ export default {
 }
 
 .text {
-  width: 30%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  font-size: 1rem
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .routerLink {
@@ -50,5 +48,15 @@ export default {
   margin-left: -80%;
   padding: 40px;
   font-size: 25px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 40%;
+}
+
+.submit-button {
+  margin-top: 10px;
 }
 </style>
