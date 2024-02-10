@@ -14,10 +14,17 @@ export default {
       gradientColor: ref(
         "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)"
       ),
+      colorEmpty: false,
     };
   },
   methods: {
     async createEvent(title, color, tags) {
+      this.colorEmpty = false;
+      if (color === false) {
+        this.colorEmpty = true;
+        return;
+      }
+      console.log("past guard clause");
       try {
         const { data } = await axios.post("http://localhost:8081/event/model", {
           title: title,
@@ -39,26 +46,10 @@ export default {
   <div class="wrapper">
     <h2>Event Creator</h2>
     <form>
-      <label for="date">Date</label>
-      <br />
-      <input
-        class="date"
-        type="date"
-        v-model="date"
-        id="date"
-        name="date"
-        value="2000-01-01"
-      />
-      <br />
-      <label for="title">Title</label>
-      <br />
-      <input class="text" id="title" name="title" v-model="title" />
-      <br />
-      <label for="tags">Tags (comma-separated)</label>
-      <br />
-      <input class="text" id="tags" name="tags" v-model="tags" />
-      <br />
-      <label class="text" for="color"
+      <div v-if="colorEmpty">
+        <h4>Please select a color</h4>
+      </div>
+      <span class="text"
         >Color:
         <color-picker
           class="text"
@@ -68,7 +59,19 @@ export default {
           shape="square"
           format="rgb"
         />
-      </label>
+      </span>
+      <br />
+      <label for="date">Date</label>
+      <br />
+      <input class="date" type="date" v-model="date" id="date" name="date" />
+      <br />
+      <label for="title">Title</label>
+      <br />
+      <input class="text" id="title" name="title" v-model="title" />
+      <br />
+      <label for="tags">Tags (comma-separated)</label>
+      <br />
+      <input class="text" id="tags" name="tags" v-model="tags" />
       <br />
       <button
         class="submit-button"
