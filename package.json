@@ -15,7 +15,8 @@
     "vue": "^3.2.13",
     "vue-color-kit": "^1.0.6",
     "vue-router": "^4.2.5",
-    "vue3-colorpicker": "^2.2.3"
+    "vue3-colorpicker": "^2.2.3",
+    "vue3-simple-typeahead": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

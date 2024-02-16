@@ -1,0 +1,15 @@
+implement EventTracker
+    Combine EventTracker and EventCreator such that we can search for and use/edit existing events or create new events from one form.
+        If existingEvent, pull and autofill all fields, then disable all fields except tags and date
+        else create event then create eventInstance
+        Implement tag creation/editing similar to https://vueschool.io/articles/vuejs-tutorials/building-a-tag-input-component-with-the-vue-3-composition-api/
+        Implement searchAhead for eventTitle similar to https://www.npmjs.com/package/vue3-simple-typeahead
+            - searching works
+            - still need to write fetch onSelect
+
+Start research into how logins will work (spring-boot-security is a good place to start)
+    Do we want to hash, salt and store passwords or use OTPs to SMS or email?
+
+Build login page
+
+Implement login backend
