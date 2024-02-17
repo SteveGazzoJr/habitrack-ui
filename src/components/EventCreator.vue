@@ -16,16 +16,18 @@ export default {
         "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)"
       ),
       colorEmpty: false,
+      returnedEvent: {},
+      isFetchedEvent: false,
     };
   },
   methods: {
     async createEvent(title, color, tags) {
       this.colorEmpty = false;
+      this.isFetchedEvent = false;
       if (color === false) {
         this.colorEmpty = true;
         return;
       }
-      console.log("past guard clause");
       try {
         const { data } = await axios.post("http://localhost:8081/event/model", {
           title: title,
@@ -39,6 +41,7 @@ export default {
         console.log(error);
       }
     },
+
     async searchEvents(event) {
       console.log(event.input);
       try {
@@ -47,6 +50,20 @@ export default {
         );
         console.log(data);
         this.eventSearchResults = data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getEvent(item) {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:8081/event/model/" + item.id
+        );
+        console.log(data);
+        this.pureColor = data.colorValue;
+        this.title = data.title;
+        this.tags = data.tags;
       } catch (error) {
         console.log(error);
       }
@@ -61,6 +78,7 @@ export default {
     <form>
       <vue3-simple-typeahead
         id="typeahead_id"
+        class="text"
         placeholder="Start writing..."
         :items="eventSearchResults"
         :minInputLength="2"
@@ -69,7 +87,8 @@ export default {
             return item.title;
           }
         "
-        @selectItem="selectItemEventHandler"
+        :disabled="isFetchedEvent"
+        @selectItem="getEvent"
         @onInput="searchEvents"
         @onFocus="onFocusEventHandler"
         @onBlur="onBlurEventHandler"
@@ -87,20 +106,40 @@ export default {
           v-model:gradientColor="gradientColor"
           shape="square"
           format="rgb"
+          :disabled="isFetchedEvent"
         />
       </span>
       <br />
       <label for="date">Date</label>
       <br />
-      <input class="date" type="date" v-model="date" id="date" name="date" />
+      <input
+        class="date"
+        type="date"
+        v-model="date"
+        id="date"
+        name="date"
+        :disabled="isFetchedEvent"
+      />
       <br />
       <label for="title">Title</label>
       <br />
-      <input class="text" id="title" name="title" v-model="title" />
+      <input
+        class="text"
+        id="title"
+        name="title"
+        v-model="title"
+        :disabled="isFetchedEvent"
+      />
       <br />
-      <label for="tags">Tags (comma-separated)</label>
+      <label for="tags">Tags</label>
       <br />
-      <input class="text" id="tags" name="tags" v-model="tags" />
+      <input
+        class="text"
+        id="tags"
+        name="tags"
+        v-model="tags"
+        :disabled="isFetchedEvent"
+      />
       <br />
       <button
         class="submit-button"
