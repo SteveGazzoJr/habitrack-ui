@@ -17,10 +17,11 @@ export default {
       ),
       colorEmpty: false,
       returnedEvent: {},
+      categories: [],
     };
   },
   methods: {
-    async createEvent(title, color, tags) {
+    async createEvent(title, color, categories) {
       this.colorEmpty = false;
       if (color === false) {
         this.colorEmpty = true;
@@ -31,6 +32,7 @@ export default {
           title: title,
           colorValue: color,
           userId: 1,
+          categories: categories.split(","),
         });
         this.eventId = data;
         this.eventFetched = true;
@@ -67,10 +69,18 @@ export default {
       <br />
       <input class="text" id="title" name="title" v-model="title" />
       <br />
+      <label for="categories">Categories (comma-separated)</label>
+      <br />
+      <input
+        class="text"
+        id="categories"
+        name="categories"
+        v-model="categories"
+      />
       <button
         class="submit-button"
         type="submit"
-        @click.prevent="createEvent(title, pureColor, tags)"
+        @click.prevent="createEvent(title, pureColor, categories)"
       >
         Submit
       </button>
