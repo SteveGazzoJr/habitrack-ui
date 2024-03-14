@@ -3,7 +3,7 @@
     <h2>Event Tracker</h2>
     <form>
       <vue3-simple-typeahead
-        id="typeahead_id"
+        id="typeahead"
         ref="typeahead"
         class="text typeahead colorbox"
         placeholder="Enter event title to retrieve"
@@ -107,6 +107,7 @@ export default {
       if (this.tags != "") {
         effectiveTags = this.tags.split(",");
       }
+
       try {
         await axios.post("http://localhost:8081/event", {
           title: this.returnedEvent.title,
