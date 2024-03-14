@@ -1,15 +1,34 @@
 implement EventTracker
-    Combine EventTracker and EventCreator such that we can search for and use/edit existing events or create new events from one form.
-        If existingEvent, pull and autofill all fields, then disable all fields except tags and date
-        else create event then create eventInstance
-        Implement tag creation/editing similar to https://vueschool.io/articles/vuejs-tutorials/building-a-tag-input-component-with-the-vue-3-composition-api/
-        Implement searchAhead for eventTitle similar to https://www.npmjs.com/package/vue3-simple-typeahead
-            - searching works
-            - still need to write fetch onSelect
+    Implement tag creation/editing similar to https://vueschool.io/articles/vuejs-tutorials/building-a-tag-input-component-with-the-vue-3-composition-api/
+    Implement searchAhead for eventTitle similar to https://www.npmjs.com/package/vue3-simple-typeahead
+        - searching works!
+
 
 Start research into how logins will work (spring-boot-security is a good place to start)
-    Do we want to hash, salt and store passwords or use OTPs to SMS or email?
+    OTPs via SMS or email is the way to go
+
+    BE: Use spring-security logins and JWTs
+        Look into refresh tokens
+        Encode userId into JWT 
+            use to validate all incoming requests
+            use to derive userInfo for data models
+
+    FE: implement authStore in pinia so all components can share auth state
+        basic flow ->   onMount check store for token and userInfo, 
+                    if null push to login page, else show component
+                    
+        setup axios to add token to all calls
+        add error handling for 403s to redirect to login
+
+    UserInfo {
+        userId,
+        sms,
+        email,
+        contactPreference
+    }
 
 Build login page
 
 Implement login backend
+
+Add categories to EventModel
