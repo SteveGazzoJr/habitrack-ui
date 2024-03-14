@@ -2,9 +2,6 @@
   <div class="wrapper">
     <h2>Event Tracker</h2>
     <form>
-      <div v-if="dateEmpty">
-        <h4>Please select an event</h4>
-      </div>
       <vue3-simple-typeahead
         id="typeahead_id"
         ref="typeahead"
@@ -22,29 +19,31 @@
       >
       </vue3-simple-typeahead>
       <br />
-      <span
-        v-for="category in this.returnedEvent.categories"
-        v-bind:key="category"
-      >
-        <category-component :category="category" />
-      </span>
-      <div v-if="dateEmpty">
-        <h4>Please select a date</h4>
+      <div v-if="eventModelRetrieved">
+        <span
+          v-for="category in this.returnedEvent.categories"
+          v-bind:key="category"
+        >
+          <category-component :category="category" />
+        </span>
+        <div v-if="dateEmpty">
+          <h4>Please select a date</h4>
+        </div>
+        <label for="date">Date</label>
+        <br />
+        <input class="date" type="date" v-model="date" id="date" name="date" />
+        <br />
+        <label for="tags">Tags</label>
+        <br />
+        <input class="text" id="tags" name="tags" v-model="tags" />
+        <button
+          class="submit-button"
+          type="submit"
+          @click.prevent="createEvent()"
+        >
+          Submit
+        </button>
       </div>
-      <label for="date">Date</label>
-      <br />
-      <input class="date" type="date" v-model="date" id="date" name="date" />
-      <br />
-      <label for="tags">Tags</label>
-      <br />
-      <input class="text" id="tags" name="tags" v-model="tags" />
-      <button
-        class="submit-button"
-        type="submit"
-        @click.prevent="createEvent()"
-      >
-        Submit
-      </button>
     </form>
   </div>
 </template>
@@ -62,7 +61,7 @@ export default {
       tags: [],
       color: {},
       dateEmpty: false,
-      eventModelEmpty: false,
+      eventModelRetrieved: false,
     };
   },
   methods: {
@@ -88,20 +87,19 @@ export default {
         this.returnedEvent = data;
         console.log(this.returnedEvent.categories);
         this.color = this.returnedEvent.colorValue;
+        this.eventModelRetrieved = true;
       } catch (error) {
         console.log(error);
       }
     },
     async createEvent() {
       this.dateEmpty = false;
-      this.eventModelEmpty = false;
       if (JSON.stringify(this.date) === "{}") {
         this.dateEmpty = true;
         return;
       }
 
       if (JSON.stringify(this.returnedEvent) === "{}") {
-        this.eventModelEmpty = true;
         return;
       }
 
@@ -119,9 +117,10 @@ export default {
         });
         this.tags = [];
         this.returnedEvent = [];
-        this.forgotDate = false;
         this.color = {};
         this.clearTypeahead();
+        this.date = {};
+        this.eventModelRetrieved = false;
       } catch (error) {
         console.log(error);
       }
