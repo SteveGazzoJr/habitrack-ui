@@ -17,26 +17,27 @@
     </div>
     <div v-if="event">
       <h5>{{ event.title }}</h5>
-      <div>Count: {{ this.counterStore.count }}</div>
+      <div>
+        userName: {{ authStore.getUserName }} <br />jwt: {{ authStore.getJwt }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { useCounterStore } from "./stores/counterStore";
+import { useAuthStore } from "./stores/authStore";
 
 export default {
   name: "EventFetcher",
   data() {
     return {
-      counterStore: useCounterStore(),
+      authStore: useAuthStore(),
       event: {},
     };
   },
   methods: {
     async getEvent(eventId) {
-      this.counterStore.increment();
       const { data } = await axios.get(
         "http://localhost:8081/event/model/" + eventId
       );

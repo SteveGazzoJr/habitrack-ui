@@ -1,5 +1,7 @@
 <template>
   <div class="routerLink">
+    <a href @click="goHome()">Home</a>
+    <br /><br />
     <a href @click="goToEventCreator()">Event Creator</a>
     <br /><br />
     <a href @click="goToEventFetcher()">Event Fetcher</a>
@@ -22,6 +24,9 @@ export default {
     },
     goToEventTracker() {
       this.$router.push("/eventtracker");
+    },
+    goHome() {
+      this.$router.push("/");
     },
   },
 };

@@ -1,13 +1,14 @@
 <script>
-/* eslint-disable */
 import axios from "axios";
 import { ref } from "vue";
 import { ColorInputWithoutInstance } from "tinycolor2";
+import { useDataStore } from "./stores/dataStore";
 
 export default {
   name: "EventCreator",
   data() {
     return {
+      dataStore: useDataStore(),
       eventSearchResults: [],
       eventId: {},
       eventFetched: false,
@@ -21,7 +22,7 @@ export default {
     };
   },
   methods: {
-    async createEvent(title, color, categories) {
+    async createEvent(title, color) {
       this.colorEmpty = false;
       if (color === false) {
         this.colorEmpty = true;
@@ -32,10 +33,12 @@ export default {
           title: title,
           colorValue: color,
           userId: 1,
-          categories: categories.split(","),
+          categories: this.dataStore.getTags,
         });
         this.eventId = data;
         this.eventFetched = true;
+        this.dataStore.setTags([]);
+        this.title = "";
       } catch (error) {
         console.log(error);
       }
@@ -69,33 +72,16 @@ export default {
       <br />
       <input class="text" id="title" name="title" v-model="title" />
       <br />
-      <label for="categories">Categories (comma-separated)</label>
+      <label for="categories">Categories</label>
       <br />
-      <input
-        class="text"
-        id="categories"
-        name="categories"
-        v-model="categories"
-      />
+      <tag-input @keydown.enter.prevent />
       <button
         class="submit-button"
         type="submit"
-        @click.prevent="createEvent(title, pureColor, categories)"
+        @click.prevent="createEvent(title, pureColor)"
       >
         Submit
       </button>
     </form>
-    <div v-if="eventFetched">
-      <h5>{{ eventId }}</h5>
-    </div>
   </div>
 </template>
-<style>
-.date {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  font-size: 1rem;
-}
-</style>

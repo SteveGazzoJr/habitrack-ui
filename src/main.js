@@ -4,12 +4,14 @@ import App from "./App.vue";
 import EventCreator from "./components/EventCreator.vue";
 import EventFetcher from "./components/EventFetcher.vue";
 import EventTracker from "./components/EventTracker.vue";
+import Welcome from "./components/Welcome.vue";
 import Vue3ColorPicker from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 import SimpleTypeahead from "vue3-simple-typeahead";
 import "vue3-simple-typeahead/dist/vue3-simple-typeahead.css";
 import { createPinia } from "pinia";
 import Category from "./components/Category.vue";
+import TagInput from "./components/TagInput.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,6 +28,10 @@ const router = createRouter({
       path: "/eventtracker",
       component: EventTracker,
     },
+    {
+      path: "/",
+      component: Welcome,
+    },
   ],
 });
 
@@ -33,6 +39,7 @@ const pinia = createPinia();
 const app = createApp(App);
 
 app.component("category-component", Category);
+app.component("tag-input", TagInput);
 
 app
   .use(pinia)

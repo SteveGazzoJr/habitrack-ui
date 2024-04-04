@@ -14,6 +14,8 @@ Start research into how logins will work (spring-boot-security is a good place t
             use to derive userInfo for data models
 
     FE: implement authStore in pinia so all components can share auth state
+            Start with welcome page, so we can welcome by name
+        Stub of authStore in-place
         basic flow ->   onMount check store for token and userInfo, 
                     if null push to login page, else show component
                     
