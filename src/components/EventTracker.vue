@@ -31,11 +31,17 @@
         </div>
         <label for="date">Date</label>
         <br />
-        <input class="date" type="date" v-model="date" id="date" name="date" />
+        <input
+          class="date text"
+          type="date"
+          v-model="date"
+          id="date"
+          name="date"
+        />
         <br />
         <label for="tags">Tags</label>
         <br />
-        <input class="text" id="tags" name="tags" v-model="tags" />
+        <tag-input @keydown.enter.prevent />
         <button
           class="submit-button"
           type="submit"
@@ -50,11 +56,13 @@
 
 <script>
 import axios from "axios";
+import { useDataStore } from "./stores/dataStore";
 
 export default {
   name: "EventTracker",
   data() {
     return {
+      dataStore: useDataStore(),
       eventSearchResults: [],
       returnedEvent: {},
       date: {},

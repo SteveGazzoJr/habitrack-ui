@@ -12,6 +12,7 @@ import "vue3-simple-typeahead/dist/vue3-simple-typeahead.css";
 import { createPinia } from "pinia";
 import Category from "./components/Category.vue";
 import TagInput from "./components/TagInput.vue";
+import Register from "./components/Register.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,6 +28,10 @@ const router = createRouter({
     {
       path: "/eventtracker",
       component: EventTracker,
+    },
+    {
+      path: "/register",
+      component: Register,
     },
     {
       path: "/",

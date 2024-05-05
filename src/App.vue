@@ -7,6 +7,8 @@
     <a href @click="goToEventFetcher()">Event Fetcher</a>
     <br /><br />
     <a href @click="goToEventTracker()">Event Tracker</a>
+    <br /><br />
+    <a href @click="goToRegister()">Register</a>
   </div>
   <router-view />
 </template>
@@ -18,6 +20,9 @@ export default {
   methods: {
     goToEventCreator() {
       this.$router.push("/eventcreator");
+    },
+    goToRegister() {
+      this.$router.push("/register");
     },
     goToEventFetcher() {
       this.$router.push("/eventfetcher");

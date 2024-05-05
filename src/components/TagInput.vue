@@ -43,11 +43,12 @@ ul {
   padding: 0;
 }
 .tag {
-  background-color: black;
+  background-color: white;
   padding: 5px;
   border-radius: 4px;
-  color: white;
+  color: black;
   white-space: nowrap;
+  border: 1px solid black;
   transition: 0.1s ease background;
 }
 input {

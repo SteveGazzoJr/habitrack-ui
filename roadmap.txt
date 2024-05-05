@@ -31,6 +31,10 @@ Start research into how logins will work (spring-boot-security is a good place t
 
 Build login page
 
-Implement login backend
+Build registration page
 
-Add categories to EventModel
+Add categories to EventModel - x
+
+Implement day rating
+    should allow rating individual days
+    should fetch unrated days in a given date range (default now().minusDays(7) thru now())
