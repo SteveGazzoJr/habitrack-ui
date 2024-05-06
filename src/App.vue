@@ -56,6 +56,15 @@ export default {
   margin-bottom: 10px;
 }
 
+.shortText {
+  width: 10;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
 .routerLink {
   position: -webkit-sticky;
   position: sticky;

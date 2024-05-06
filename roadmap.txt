@@ -32,6 +32,7 @@ Start research into how logins will work (spring-boot-security is a good place t
 Build login page
 
 Build registration page
+    need to add SMS/email verification page
 
 Add categories to EventModel - x
 
