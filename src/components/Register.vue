@@ -100,12 +100,17 @@ export default {
         return;
       }
 
-      await axios.post("http://localhost:8081/user", {
+      const { data } = await axios.post("http://localhost:8081/user", {
         displayName: displayName,
         email: email,
         phone: phone,
         preference: contactPreference,
+        smsVerified: false,
+        emaiVerified: false,
+        role: "USER",
       });
+      this.authStore.setUserId(data.id);
+      this.authStore.setUserName(data.displayName);
     },
   },
 };
