@@ -13,6 +13,7 @@ import { createPinia } from "pinia";
 import Category from "./components/Category.vue";
 import TagInput from "./components/TagInput.vue";
 import Register from "./components/Register.vue";
+import Login from "./components/Login.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -36,6 +37,10 @@ const router = createRouter({
     {
       path: "/",
       component: Welcome,
+    },
+    {
+      path: "/login",
+      component: Login,
     },
   ],
 });

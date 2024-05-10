@@ -7,6 +7,7 @@ export const useAuthStore = defineStore({
     userName: useLocalStorage("userName", {}),
     userId: useLocalStorage("userId", {}),
     jwt: useLocalStorage("jwt", {}),
+    email: useLocalStorage("email", {}),
   }),
   getters: {
     getUserName: (state) => {
@@ -18,6 +19,9 @@ export const useAuthStore = defineStore({
     getuserId: (state) => {
       return state.userId;
     },
+    getEmail: (state) => {
+      return state.email;
+    },
   },
   actions: {
     setUserName(userName) {
@@ -28,6 +32,9 @@ export const useAuthStore = defineStore({
     },
     setJwt(jwt) {
       this.jwt = jwt;
+    },
+    setEmail(email) {
+      this.email = email;
     },
   },
 });

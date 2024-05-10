@@ -66,7 +66,7 @@ import axios from "axios";
 import { useAuthStore } from "./stores/authStore";
 
 export default {
-  name: "EventFetcher",
+  name: "RegisterVue",
   data() {
     return {
       authStore: useAuthStore(),
@@ -111,6 +111,7 @@ export default {
       });
       this.authStore.setUserId(data.id);
       this.authStore.setUserName(data.displayName);
+      this.authStore.setEmail(data.email);
     },
   },
 };

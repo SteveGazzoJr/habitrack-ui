@@ -17,9 +17,6 @@
     </div>
     <div v-if="event">
       <h5>{{ event.title }}</h5>
-      <div>
-        userName: {{ authStore.getUserName }} <br />jwt: {{ authStore.getJwt }}
-      </div>
     </div>
   </div>
 </template>

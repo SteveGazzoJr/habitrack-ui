@@ -22,13 +22,6 @@ Start research into how logins will work (spring-boot-security is a good place t
         setup axios to add token to all calls
         add error handling for 403s to redirect to login
 
-    UserInfo {
-        userId,
-        sms,
-        email,
-        contactPreference
-    }
-
 Build login page
 
 Build registration page
