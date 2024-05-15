@@ -23,9 +23,11 @@ Start research into how logins will work (spring-boot-security is a good place t
         add error handling for 403s to redirect to login
 
 Build login page
+    basics - x
 
 Build registration page
     need to add SMS/email verification page
+    refactor login page code verification bit out into its own component so you can reuse it here and verify SMS on registration
 
 Add categories to EventModel - x
 

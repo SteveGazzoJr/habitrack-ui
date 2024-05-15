@@ -111,10 +111,20 @@ export default {
         return;
       }
 
-      await axios.post("http://localhost:8081/verificationCode/verify", {
-        userId: this.authStore.getuserId,
-        code: code,
-      });
+      const { headers, data } = await axios.post(
+        "http://localhost:8081/verificationCode/verify",
+        {
+          userId: this.authStore.getuserId,
+          code: code,
+        }
+      );
+
+      this.authStore.setJwt(headers.get("x-token"));
+      this.authStore.setUserId(data.id);
+      this.authStore.setUserName(data.displayName);
+      this.authStore.setEmail(data.email);
+      this.isCodeSent = false;
+      this.isInvalidCode = false;
     },
   },
 };
