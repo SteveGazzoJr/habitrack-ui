@@ -1,10 +1,5 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
-import EventCreator from "./components/EventCreator.vue";
-import EventFetcher from "./components/EventFetcher.vue";
-import EventTracker from "./components/EventTracker.vue";
-import Welcome from "./components/Welcome.vue";
 import Vue3ColorPicker from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 import SimpleTypeahead from "vue3-simple-typeahead";
@@ -12,38 +7,46 @@ import "vue3-simple-typeahead/dist/vue3-simple-typeahead.css";
 import { createPinia } from "pinia";
 import Category from "./components/Category.vue";
 import TagInput from "./components/TagInput.vue";
-import Register from "./components/Register.vue";
-import Login from "./components/Login.vue";
+import axios from "axios";
+import { useAuthStore } from "./components/stores/authStore";
+import { router } from "./router.js";
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    {
-      path: "/eventcreator",
-      component: EventCreator,
-    },
-    {
-      path: "/eventfetcher",
-      component: EventFetcher,
-    },
-    {
-      path: "/eventtracker",
-      component: EventTracker,
-    },
-    {
-      path: "/register",
-      component: Register,
-    },
-    {
-      path: "/",
-      component: Welcome,
-    },
-    {
-      path: "/login",
-      component: Login,
-    },
-  ],
-});
+axios.interceptors.request.use(
+  (config) => {
+    const authStore = useAuthStore();
+    config.headers["Authorization"] = `Bearer ${authStore.getJwt}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const authStore = useAuthStore();
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      authStore.setJwt(null);
+      router.push("/");
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+    }
+  }
+);
 
 const pinia = createPinia();
 const app = createApp(App);

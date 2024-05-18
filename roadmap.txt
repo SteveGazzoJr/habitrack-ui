@@ -19,8 +19,11 @@ Start research into how logins will work (spring-boot-security is a good place t
         basic flow ->   onMount check store for token and userInfo, 
                     if null push to login page, else show component
                     
-        setup axios to add token to all calls
+        setup axios to add token to all calls - x
         add error handling for 403s to redirect to login
+            maybe build a logout vue that can be routed to with a 403, or when trying to make a call with a blank token
+                logout will clear local data, make any appropriate calls to clear remote data, then push to welcome =
+        refactor welcome to push to login or register
 
 Build login page
     basics - x
