@@ -125,6 +125,7 @@ export default {
       this.authStore.setEmail(data.email);
       this.isCodeSent = false;
       this.isInvalidCode = false;
+      this.$router.push("/eventtracker");
     },
   },
 };

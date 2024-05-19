@@ -2,7 +2,7 @@
   <div class="tag-input">
     <input @keydown.enter="addTag(newTag)" v-model="newTag" type="text" />
     <ul class="tags">
-      <li v-for="tag in tags" :key="tag" class="tag">
+      <li v-for="tag in tags" :key="tag" class="tag" @click="clearTag(tag)">
         {{ tag }}
       </li>
     </ul>
@@ -17,19 +17,33 @@ export default {
   setup() {
     const dataStore = ref(useDataStore());
     const tags = ref([]);
-    const newTag = ref("");
+    const tagBoxValue = ref("");
     const addTag = (tag) => {
-      if (tag == "" || tags.value.includes(tag)) {
-        newTag.value = "";
+      let isBadTag = false;
+      if (tag == "") {
+        isBadTag = true;
+      }
+      if (tags.value != null && tags.value.includes(tag)) {
+        isBadTag = true;
+      }
+      if (isBadTag) {
+        tagBoxValue.value = "";
         return;
       }
       tags.value.push(tag);
       dataStore.value.setTags(tags);
-      newTag.value = ""; // reset newTag
-      console.log("dataStore tags from taginuput");
-      console.log(dataStore.value.getTags);
+      tagBoxValue.value = ""; // reset newTag
     };
-    return { tags, newTag, addTag, dataStore };
+    const clearTag = (tag) => {
+      tags.value = tags.value.filter((e) => {
+        console.log(e);
+        console.log(e !== tag);
+        return e !== tag;
+      });
+      console.log(tags.value.length);
+      dataStore.value.setTags(tags);
+    };
+    return { tags, newTag: tagBoxValue, addTag, dataStore, clearTag };
   },
 };
 </script>

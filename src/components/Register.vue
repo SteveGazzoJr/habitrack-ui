@@ -112,6 +112,7 @@ export default {
       this.authStore.setUserId(data.id);
       this.authStore.setUserName(data.displayName);
       this.authStore.setEmail(data.email);
+      this.$router.push("/login");
     },
   },
 };
