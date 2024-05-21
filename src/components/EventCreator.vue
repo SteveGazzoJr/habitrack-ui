@@ -16,15 +16,21 @@ export default {
         "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)"
       ),
       colorEmpty: false,
+      titleEmpty: false,
       returnedEvent: {},
       categories: [],
+      title: "",
     };
   },
   methods: {
     async createEvent(title, color) {
       this.colorEmpty = false;
-      if (color === false) {
+      if (color === "") {
         this.colorEmpty = true;
+        return;
+      }
+      if (title === "") {
+        this.titleEmpty = true;
         return;
       }
       try {
@@ -38,6 +44,9 @@ export default {
         this.eventFetched = true;
         this.dataStore.setTags([]);
         this.title = "";
+        this.color = "";
+        this.colorEmpty = false;
+        this.titleEmpty = false;
       } catch (error) {
         console.log(error);
       }
@@ -67,6 +76,9 @@ export default {
       </span>
       <br />
       <br />
+      <div v-if="titleEmpty">
+        <h4>Please enter a title</h4>
+      </div>
       <label for="title">Title</label>
       <br />
       <input class="text" id="title" name="title" v-model="title" />

@@ -26,9 +26,11 @@
         >
           <category-component :category="category" />
         </span>
-        <div v-if="dateEmpty">
+        <br />
+        <br />
+        <span v-if="dateEmpty">
           <h4>Please select a date</h4>
-        </div>
+        </span>
         <label for="date">Date</label>
         <br />
         <input

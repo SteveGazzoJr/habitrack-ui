@@ -94,11 +94,13 @@ export default {
       );
     },
     async initiateLogin(email, picked) {
-      this.authStore.setEmail(email);
+      if (email === "") {
+        email = this.authStore.getEmail;
+      }
       this.isBadEmail = false;
       this.isValidContactMethod = true;
 
-      this.isBadEmail = !this.validateEmail(this.authStore.getEmail);
+      this.isBadEmail = !this.validateEmail(email);
       this.isValidContactMethod = picked === "EMAIL" || picked === "SMS";
 
       if (this.isBadEmail || !this.isValidContactMethod) {

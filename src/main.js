@@ -5,7 +5,7 @@ import "vue3-colorpicker/style.css";
 import SimpleTypeahead from "vue3-simple-typeahead";
 import "vue3-simple-typeahead/dist/vue3-simple-typeahead.css";
 import { createPinia } from "pinia";
-import Category from "./components/Category.vue";
+import CategoryComponent from "./components/CategoryComponent.vue";
 import TagInput from "./components/TagInput.vue";
 import axios from "axios";
 import { useAuthStore } from "./components/stores/authStore";
@@ -51,7 +51,7 @@ axios.interceptors.response.use(
 const pinia = createPinia();
 const app = createApp(App);
 
-app.component("category-component", Category);
+app.component("category-component", CategoryComponent);
 app.component("tag-input", TagInput);
 
 app
