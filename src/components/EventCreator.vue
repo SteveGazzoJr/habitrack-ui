@@ -1,7 +1,6 @@
 <script>
 import axios from "axios";
 import { ref } from "vue";
-import { ColorInputWithoutInstance } from "tinycolor2";
 import { useDataStore } from "./stores/dataStore";
 
 export default {
@@ -12,7 +11,7 @@ export default {
       eventSearchResults: [],
       eventId: {},
       eventFetched: false,
-      pureColor: ref < ColorInputWithoutInstance > "red",
+      pureColor: "",
       gradientColor: ref(
         "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)"
       ),

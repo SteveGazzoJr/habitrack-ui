@@ -22,6 +22,9 @@ export const useAuthStore = defineStore({
     getEmail: (state) => {
       return state.email;
     },
+    isLoggedIn: (state) => {
+      return state.jwt;
+    },
   },
   actions: {
     setUserName(userName) {
@@ -35,6 +38,15 @@ export const useAuthStore = defineStore({
     },
     setEmail(email) {
       this.email = email;
+    },
+    clear() {
+      this.setJwt("");
+      this.setEmail("");
+      this.setUserId("");
+      this.setUserName("");
+    },
+    logOut() {
+      this.setJwt("");
     },
   },
 });

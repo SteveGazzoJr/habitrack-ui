@@ -77,7 +77,6 @@ export default {
       this.$refs.typeahead.clearInput();
     },
     async searchEvents(event) {
-      console.log(event.input);
       try {
         const { data } = await axios.get(
           "http://localhost:8081/event/models?title=" + event.input
@@ -93,7 +92,6 @@ export default {
           "http://localhost:8081/event/model/" + item.id
         );
         this.returnedEvent = data;
-        console.log(this.returnedEvent.categories);
         this.color = this.returnedEvent.colorValue;
         this.eventModelRetrieved = true;
       } catch (error) {
@@ -111,18 +109,13 @@ export default {
         return;
       }
 
-      let effectiveTags = [];
-      if (this.tags != "") {
-        effectiveTags = this.tags.split(",");
-      }
-
       try {
         await axios.post("http://localhost:8081/event", {
           title: this.returnedEvent.title,
           date: this.date,
           eventModelId: this.returnedEvent.id,
           userId: 1,
-          tags: effectiveTags,
+          tags: this.dataStore.getTags,
         });
         this.tags = [];
         this.returnedEvent = [];

@@ -8,17 +8,24 @@
       <div v-if="isBadEmail">
         <h5>Please enter a valid email address</h5>
       </div>
-      <input
-        type="email"
-        class="text"
-        id="email"
-        name="email"
-        v-model="email"
-      />
+      <div v-if="authStore.getEmail">
+        {{ authStore.getEmail }}
+        <br />
+        <a href @click="authStore.clear()">Log in as someone else</a>
+      </div>
+      <div v-else>
+        <input
+          type="email"
+          class="text"
+          id="email"
+          name="email"
+          v-model="email"
+        />
+      </div>
       <br />
       <div v-if="isValidContactMethod"></div>
       <div v-else>
-        <h5>Please enter a valid email address</h5>
+        <h5>Please select a contact method</h5>
       </div>
       <p>Receive login code via:</p>
       <input
@@ -60,7 +67,10 @@
     </div>
   </div>
 </template>
+//figure out how to use email from authStore as default value
 <script>
+//make a separate form for savedEmail and newEmail - try to compose where
+//possible
 import axios from "axios";
 import { useAuthStore } from "./stores/authStore";
 
@@ -74,6 +84,7 @@ export default {
       isValidContactMethod: true,
       isCodeSent: false,
       isInvalidCode: false,
+      email: "",
     };
   },
   methods: {
@@ -83,10 +94,11 @@ export default {
       );
     },
     async initiateLogin(email, picked) {
+      this.authStore.setEmail(email);
       this.isBadEmail = false;
       this.isValidContactMethod = true;
 
-      this.isBadEmail = !this.validateEmail(email);
+      this.isBadEmail = !this.validateEmail(this.authStore.getEmail);
       this.isValidContactMethod = picked === "EMAIL" || picked === "SMS";
 
       if (this.isBadEmail || !this.isValidContactMethod) {
