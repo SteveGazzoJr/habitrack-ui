@@ -1,0 +1,10 @@
+{
+  "id": "440e1fec-f9d4-40db-bd31-1fffb140233c",
+  "displayName": "Steve",
+  "email": "stevegazzojr@gmail.com",
+  "phone": "4128745155",
+  "preference": "SMS",
+  "role": "USER",
+  "smsVerified": false,
+  "emailVerified": false
+}
