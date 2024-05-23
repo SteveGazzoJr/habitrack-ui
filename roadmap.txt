@@ -7,33 +7,38 @@ implement EventTracker
 Start research into how logins will work (spring-boot-security is a good place to start)
     OTPs via SMS or email is the way to go
 
-    BE: Use spring-security logins and JWTs
+    BE: Use spring-security logins and JWTs - x
         Look into refresh tokens
-        Encode userId into JWT 
+        Encode userId into JWT  - x
             use to validate all incoming requests
             use to derive userInfo for data models
 
-    FE: implement authStore in pinia so all components can share auth state
+    FE: implement authStore in pinia so all components can share auth state - x
             Start with welcome page, so we can welcome by name
-        Stub of authStore in-place
-        basic flow ->   onMount check store for token and userInfo, 
+        authStore in-place - x
+        basic flow ->  with each request check store for token and userInfo, 
                     if null push to login page, else show component
                     
         setup axios to add token to all calls - x
         add error handling for 403s to redirect to login
-            maybe build a logout vue that can be routed to with a 403, or when trying to make a call with a blank token
+            maybe build a logout action that can be routed to with a 403, or when trying to make a call with a blank token
                 logout will clear local data, make any appropriate calls to clear remote data, then push to welcome =
-        refactor welcome to push to login or register
+        refactor welcome to push to login or register - x
 
 Build login page
     basics - x
+    slightly beyond basics - x
 
-Build registration page
+Build registration page - x
     need to add SMS/email verification page
-    refactor login page code verification bit out into its own component so you can reuse it here and verify SMS on registration
 
 Add categories to EventModel - x
 
 Implement day rating
     should allow rating individual days
     should fetch unrated days in a given date range (default now().minusDays(7) thru now())
+
+Start designing data views, now it's time for the app to actually do something
+    What events are most common on a day with a given rating?
+    Most common events of type x in a date range? Tag x? Category x?
+        How many of each?
