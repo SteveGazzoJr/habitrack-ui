@@ -4,10 +4,10 @@ import { useLocalStorage } from "@vueuse/core";
 export const useAuthStore = defineStore({
   id: "auth",
   state: () => ({
-    userName: useLocalStorage("userName", {}),
-    userId: useLocalStorage("userId", {}),
-    jwt: useLocalStorage("jwt", {}),
-    email: useLocalStorage("email", {}),
+    userName: useLocalStorage("userName", ""),
+    userId: useLocalStorage("userId", ""),
+    jwt: useLocalStorage("jwt", ""),
+    email: useLocalStorage("email", ""),
   }),
   getters: {
     getUserName: (state) => {

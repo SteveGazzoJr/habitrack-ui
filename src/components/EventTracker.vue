@@ -16,6 +16,7 @@
         "
         @selectItem="getEvent"
         @onInput="searchEvents"
+        name="typeahead"
       >
       </vue3-simple-typeahead>
       <br />

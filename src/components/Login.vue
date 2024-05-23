@@ -47,7 +47,12 @@
       <label for="email">Email</label>
       <br />
     </form>
-    <button class="submit-button" @click.prevent="initiateLogin(email, picked)">
+    <button
+      v-if="!isCodeSent"
+      name="sendCode"
+      class="submit-button"
+      @click.prevent="initiateLogin(email, picked)"
+    >
       Submit
     </button>
     <div v-if="isCodeSent">
@@ -61,7 +66,11 @@
         <br />
         <br />
       </form>
-      <button class="submit-button" @click.prevent="submitCode(code)">
+      <button
+        class="submit-button"
+        name="submitCode"
+        @click.prevent="submitCode(code)"
+      >
         Submit
       </button>
     </div>
