@@ -44,7 +44,7 @@
         <br />
         <label for="tags">Tags</label>
         <br />
-        <tag-input @keydown.enter.prevent />
+        <tag-input @keydown.enter.prevent name="tagInput" />
         <button
           class="submit-button"
           type="submit"

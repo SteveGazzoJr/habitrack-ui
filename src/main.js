@@ -29,8 +29,7 @@ axios.interceptors.response.use(
   (error) => {
     const authStore = useAuthStore();
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
+      //TODO add conditional here to clear auth data and push to login on 403 only
       console.log(error.response.data);
       console.log(error.response.status);
       console.log(error.response.headers);

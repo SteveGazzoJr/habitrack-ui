@@ -9,7 +9,7 @@
     <a href @click="goToEventTracker()">Event Tracker</a>
     <br /><br />
     <div v-if="authStore.isLoggedIn">
-      <a href @click="authStore.logOut()">Log out</a>
+      <a href @click="authStore.logOut()">Log Out</a>
     </div>
     <div v-else>
       <a href @click="goHome()">Log In</a>
@@ -19,7 +19,6 @@
   <br />
   <router-view />
 </template>
-//figure out how to make logout div invisible if token not set
 <script>
 import { useAuthStore } from "./components/stores/authStore";
 export default {

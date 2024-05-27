@@ -19,9 +19,9 @@ export default {
   <div class="wrapper">
     <h1>I DON'T KNOW YOU</h1>
     <h4>that's my purse</h4>
-    <a href @click="goToRegister()">Register</a>
+    <a href @click="goToRegister()" name="register">Register</a>
     <br /><br />
-    <a href @click="goToLogin()">Login</a>
+    <a href @click="goToLogin()" name="login">Login</a>
   </div>
 </template>
 

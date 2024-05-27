@@ -40,7 +40,7 @@ export default {
           userId: 1,
           categories: this.dataStore.getTags,
         });
-        this.eventId = data;
+        this.eventId = data.id;
         this.eventFetched = true;
         this.dataStore.setTags([]);
         this.title = "";
@@ -81,11 +81,11 @@ export default {
       </div>
       <label for="title">Title</label>
       <br />
-      <input class="text" id="title" name="title" v-model="title" />
+      <input class="text title" id="title" name="title" v-model="title" />
       <br />
       <label for="categories">Categories</label>
       <br />
-      <tag-input @keydown.enter.prevent />
+      <tag-input @keydown.enter.prevent class="tag-input" />
       <button
         class="submit-button"
         type="submit"
