@@ -47,6 +47,7 @@ export const useAuthStore = defineStore({
     },
     logOut() {
       this.setJwt("");
+      this.setUserId("");
     },
   },
 });

@@ -60,12 +60,14 @@
 <script>
 import axios from "axios";
 import { useDataStore } from "./stores/dataStore";
+import { useAuthStore } from "./stores/authStore";
 
 export default {
   name: "EventTracker",
   data() {
     return {
       dataStore: useDataStore(),
+      authStore: useAuthStore(),
       eventSearchResults: [],
       returnedEvent: {},
       date: {},
@@ -117,7 +119,7 @@ export default {
           title: this.returnedEvent.title,
           date: this.date,
           eventModelId: this.returnedEvent.id,
-          userId: 1,
+          userId: this.authStore.getuserId,
           tags: this.dataStore.getTags,
         });
         this.tags = [];

@@ -1,10 +1,10 @@
-implement EventTracker
+implement EventTracker - x
     Implement tag creation/editing similar to https://vueschool.io/articles/vuejs-tutorials/building-a-tag-input-component-with-the-vue-3-composition-api/
     Implement searchAhead for eventTitle similar to https://www.npmjs.com/package/vue3-simple-typeahead
         - searching works!
 
 
-Start research into how logins will work (spring-boot-security is a good place to start)
+Start research into how logins will work (spring-boot-security is a good place to start) - x
     OTPs via SMS or email is the way to go
 
     BE: Use spring-security logins and JWTs - x
@@ -42,3 +42,8 @@ Start designing data views, now it's time for the app to actually do something
     What events are most common on a day with a given rating?
     Most common events of type x in a date range? Tag x? Category x?
         How many of each?
+
+Better error handling 
+    use axios configs to handle AAA errors - x
+    surround network calls w tries
+        build error toasts so you can actually tell users where they screw up

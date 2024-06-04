@@ -49,7 +49,7 @@ describe("Bare bones smoke test", () => {
     cy.get('input[name="typeahead"]').should("contain.text", "");
   });
 
-  it("Can create an event model and log out", () => {
+  it("Can create an event model", () => {
     cy.intercept("POST", "event/model", {
       fixture: "postModelResponse.json",
     }).as("postModel");

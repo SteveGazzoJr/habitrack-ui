@@ -28,12 +28,12 @@ axios.interceptors.response.use(
   },
   (error) => {
     const authStore = useAuthStore();
-    if (error.response) {
+    if (error.response.status === 401 || error.response.status === 403) {
       //TODO add conditional here to clear auth data and push to login on 403 only
       console.log(error.response.data);
       console.log(error.response.status);
       console.log(error.response.headers);
-      authStore.setJwt(null);
+      authStore.logOut();
       router.push("/");
     } else if (error.request) {
       // The request was made but no response was received
