@@ -37,6 +37,18 @@ Add categories to EventModel - x
 Implement day rating
     should allow rating individual days
     should fetch unrated days in a given date range (default now().minusDays(7) thru now())
+        oh man am I gonna have to store user settings? dammit...
+    A day will consist of a 1-5 rating on each of the following scales:
+        Emotional Stability
+            How stable were your emotions throughout the day? 
+            Bouts of noticeable excitement, sadness, anger, things like that
+        Engagement
+            How well did you adhere to and accomplish your goals today?
+            How well did you direct your energy?
+            Did you feel especially sharp and/or on the ball?
+        Energy/Enthusiasm (decide later)
+            What was the raw output of your mind and body like today? 
+            Did tasks or social engagements drag on or were you able to meet their energy requirements?
 
 Start designing data views, now it's time for the app to actually do something
     What events are most common on a day with a given rating?

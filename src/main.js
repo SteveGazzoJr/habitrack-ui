@@ -7,6 +7,7 @@ import "vue3-simple-typeahead/dist/vue3-simple-typeahead.css";
 import { createPinia } from "pinia";
 import CategoryComponent from "./components/CategoryComponent.vue";
 import TagInput from "./components/TagInput.vue";
+import RatingComponent from "./components/RatingComponent.vue";
 import axios from "axios";
 import { useAuthStore } from "./components/stores/authStore";
 import { router } from "./router.js";
@@ -52,6 +53,7 @@ const app = createApp(App);
 
 app.component("category-component", CategoryComponent);
 app.component("tag-input", TagInput);
+app.component("rating-component", RatingComponent);
 
 app
   .use(pinia)

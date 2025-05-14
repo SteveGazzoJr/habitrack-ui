@@ -5,6 +5,7 @@ import EventTracker from "./components/EventTracker.vue";
 import Welcome from "./components/Welcome.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
+import DayRating from "./components/DayRating.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +33,10 @@ export const router = createRouter({
     {
       path: "/login",
       component: Login,
+    },
+    {
+      path: "/dayrating",
+      component: DayRating,
     },
   ],
 });

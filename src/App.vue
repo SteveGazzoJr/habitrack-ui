@@ -8,6 +8,8 @@
     <br /><br />
     <a href @click="goToEventTracker()">Event Tracker</a>
     <br /><br />
+    <a href @click="goToDayRating()">Day Rating</a>
+    <br /><br />
     <div v-if="authStore.isLoggedIn">
       <a href @click="authStore.logOut()">Log Out</a>
     </div>
@@ -38,6 +40,9 @@ export default {
     },
     goToEventTracker() {
       this.$router.push("/eventtracker");
+    },
+    goToDayRating() {
+      this.$router.push("/dayrating");
     },
     goHome() {
       this.$router.push("/");

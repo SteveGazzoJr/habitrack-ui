@@ -56,11 +56,11 @@ describe("Bare bones smoke test", () => {
 
     cy.visit("http://localhost:8080/eventcreator").as("creator");
     cy.contains("Submit").click();
-    cy.contains("Please select a color");
+    cy.contains("Please select a color").should("exist");
     cy.get(".current-color").click();
     cy.get(".vc-compact__color_cube").click({ multiple: true });
     cy.contains("Submit").click();
-    cy.contains("Please enter a title");
+    cy.contains("Please enter a title").should("exist");
     cy.get(".title").type("testTitle");
     cy.get(".tag-input").type("testCategory").type("{enter}");
     cy.contains("Submit").click();
